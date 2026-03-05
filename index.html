@@ -24,4 +24,11 @@
 /* General overflow protection */
 body{overflow-x:hidden!important}
 .scroll-container{overflow-x:hidden!important}
+
+/* Physics text (about quote) - prevent overflow on mobile */
+@media(max-width:768px){.physics-text{font-size:100rem!important;line-height:95rem!important}}
+@media(max-width:430px){.physics-text{font-size:70rem!important;line-height:68rem!important}}
+
+/* About title letters */
+@media(max-width:430px){.about-title .letter{font-size:350rem!important}}
 </style></head><body><div id="root"></div></body></html>
