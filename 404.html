@@ -27,7 +27,7 @@
     var scroller=window.innerWidth<1100?document.querySelector('.scroll-container'):window;
     function checkScroll(){
       var rect=sec.getBoundingClientRect();
-      if(rect.top<window.innerHeight*0.8&&rect.bottom>0){
+      if(rect.top<window.innerHeight*0.3&&rect.bottom>0){
         if(!played){v.play();played=true;}
       }else{
         if(played){v.pause();v.currentTime=0;played=false;}
