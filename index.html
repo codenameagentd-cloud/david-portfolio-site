@@ -9,37 +9,25 @@
 <script>
 (function(){
   function init(){
-    var sec=document.querySelector('.projects');
-    if(!sec)return setTimeout(init,500);
-    if(sec.querySelector('.video-overlay-wrap'))return;
+    var canvas=document.querySelector('.projects canvas');
+    if(!canvas)return setTimeout(init,500);
     var wrap=document.createElement('div');
     wrap.className='video-overlay-wrap';
     var v=document.createElement('video');
     v.src='./img/copilot-demo.mp4';
-    v.poster='./img/projects/art1v2.jpg';
     v.muted=true;v.loop=true;v.playsInline=true;v.preload='auto';
     v.setAttribute('playsinline','');
     wrap.appendChild(v);
-    
-    sec.appendChild(wrap);
-
-    // Track scroll: show video only when projects section is centered
-    var scroller=window.innerWidth<1100?document.querySelector('.scroll-container'):window;
+    document.body.appendChild(wrap);
     var isPlaying=false;
-    function checkScroll(){
-      var rect=sec.getBoundingClientRect();
-      var secCenter=rect.top+rect.height/2;
-      var viewCenter=window.innerHeight/2;
-      var dist=Math.abs(secCenter-viewCenter);
-      // Show when section center is within 20% of viewport center
-      if(dist<window.innerHeight*0.2){
-        if(!isPlaying){wrap.classList.add('active');v.play();isPlaying=true;}
-      }else{
-        if(isPlaying){wrap.classList.remove('active');v.pause();v.currentTime=0;isPlaying=false;}
-      }
-    }
-    (scroller||window).addEventListener('scroll',checkScroll,{passive:true});
-    checkScroll();
+    var sec=document.querySelector('.projects');
+    sec.addEventListener('click',function(){
+      if(isPlaying){wrap.classList.remove('active');v.pause();v.currentTime=0;isPlaying=false;}
+      else{wrap.classList.add('active');v.play();isPlaying=true;}
+    });
+    document.addEventListener('click',function(e){
+      if(isPlaying&&!sec.contains(e.target)){wrap.classList.remove('active');v.pause();v.currentTime=0;isPlaying=false;}
+    });
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
   else init();
