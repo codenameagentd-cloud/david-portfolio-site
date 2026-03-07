@@ -2,10 +2,9 @@
 
 
 <style>
-.video-overlay-wrap{display:none;position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;opacity:0;transition:opacity 0.3s ease}
+.video-overlay-wrap{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:10;opacity:0;transition:opacity 0.3s ease}
 .video-overlay-wrap.active{opacity:1}
-.video-overlay-wrap video{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:55%;height:auto;object-fit:cover}
-.projects{position:relative}
+.video-overlay-wrap video{position:absolute;top:12%;left:18%;width:63%;height:auto;object-fit:cover}
 </style>
 <script>
 (function(){
@@ -21,7 +20,7 @@
     v.muted=true;v.loop=true;v.playsInline=true;v.preload='auto';
     v.setAttribute('playsinline','');
     wrap.appendChild(v);
-    sec.style.position='relative';
+    
     sec.appendChild(wrap);
 
     // Track scroll: show video only when projects section is centered
